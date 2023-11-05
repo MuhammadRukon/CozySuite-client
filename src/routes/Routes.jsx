@@ -6,6 +6,7 @@ import ErrorPage from "../pages/ErrorPage";
 import MyBookings from "../pages/MyBookings";
 import Rooms from "../pages/Rooms";
 import Home from "../pages/Home";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/mybookings",
-    element: <MyBookings />,
+    element: (
+      <PrivateRoute>
+        <MyBookings />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/rooms",

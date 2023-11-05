@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "./Container";
 import NavbarLinks from "./NavbarLinks";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOutUser()
+      .then(() => console.log("sign out and show toast"))
+      .catch((error) => console.log(error.message));
+  };
   return (
     <Container>
       <div className="flex-none lg:hidden">
@@ -36,12 +43,28 @@ const Navbar = () => {
         <ul className="menu menu-horizontal gap-5">
           {/* Navbar menu content here */}
           <NavbarLinks />
-          <NavLink
-            to="/login"
-            className="btn bg-primary hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
-          >
-            Login
-          </NavLink>
+          {!user && (
+            <NavLink
+              to="/login"
+              className="btn bg-primary hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
+            >
+              Login
+            </NavLink>
+          )}
+          {user && (
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-red-300">
+                <img src={user.photoURL} alt="" />
+              </div>
+              <p className="text-white text-lg">{user.displayName}</p>
+              <button
+                onClick={handleLogOut}
+                className="btn bg-primary hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
+              >
+                logout
+              </button>
+            </div>
+          )}
         </ul>
       </div>
     </Container>
