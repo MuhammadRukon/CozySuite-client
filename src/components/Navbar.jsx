@@ -36,7 +36,11 @@ const Navbar = () => {
       </div>
       <div className="flex-1">
         <Link to="/">
-          <img src="logo.png" className="w-40 lg:w-48" alt="" />
+          <img
+            src="https://i.ibb.co/6DQM2Yc/logo.png"
+            className="w-40 lg:w-48"
+            alt=""
+          />
         </Link>
       </div>
       <div className="flex-none hidden lg:block">
