@@ -1,9 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Container from "../components/Container";
+import { useState } from "react";
 
 const RoomDetails = () => {
   const loadedData = useLoaderData();
+  const [open, setOpen] = useState(false);
+  const handleOpenGallery = () => {
+    setOpen(!open);
+  };
   const [room] = loadedData;
   console.log(room);
   return (
@@ -16,23 +21,28 @@ const RoomDetails = () => {
               className="rounded-lg overflow-hidden "
               alt="room"
             />
-            <div className="absolute flex flex-wrap gap-3 sm:gap-5 w-auto h-auto bottom-12">
-              {room?.roomImages?.map((image, index) => (
-                <img
-                  className="h-[50px] md:h-[100px] lg:h-[60px]  xl:h-[100px] w-[80px] md:w-[140px] lg:w-[90px] xl:w-[140px]  rounded-lg hover:scale-[1.5] transition-all"
-                  src={image}
-                  key={index}
-                />
-              ))}
-            </div>
-            <span className="absolute h-fit w-fit bottom-2 left-10 opacity-50 text-xs italic">
-              hover over the small images to zoom
-            </span>
+            {open && (
+              <>
+                <div className="absolute flex flex-wrap gap-3 sm:gap-5 w-auto h-auto bottom-12">
+                  {room?.roomImages?.map((image, index) => (
+                    <img
+                      className="h-[50px] md:h-[100px] lg:h-[60px]  xl:h-[100px] w-[80px] md:w-[140px] lg:w-[90px] xl:w-[140px]  rounded-lg hover:scale-[1.5] transition-all"
+                      src={image}
+                      key={index}
+                    />
+                  ))}
+                </div>
+                <span className="absolute h-fit w-fit bottom-2 left-10 opacity-50 text-xs italic">
+                  hover over the small images to zoom
+                </span>
+              </>
+            )}
           </figure>
 
           <div className="p-8 py-10 font-semibold flex flex-col justify-between flex-1">
             <h2 className="text-5xl font-bold font-primary">{room.name}</h2>
             <p className="italic text-lg">{room.description}</p>
+
             <div className="space-y-4">
               <p className="">Available: {room.availability}</p>
               <p className="">Price: {room.pricePerNight}$</p>
@@ -43,6 +53,12 @@ const RoomDetails = () => {
               <button className="btn btn-primary font-bold">book now</button>
               <button className="btn btn-primary font-bold">date picker</button>
             </div>
+            <p
+              onClick={handleOpenGallery}
+              className="capitalize text-xs italic underline font-bold opacity-70 text-primary cursor-pointer"
+            >
+              {open ? "click to hide images" : "Click to see more images"}
+            </p>
           </div>
         </div>
       </Container>
