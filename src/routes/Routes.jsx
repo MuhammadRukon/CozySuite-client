@@ -2,13 +2,21 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ErrorPage from "../pages/ErrorPage";
+import MyBookings from "../pages/MyBookings";
+import Rooms from "../pages/Rooms";
+import Home from "../pages/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <h1>error</h1>,
+    errorElement: <ErrorPage />,
     children: [
+      {
+        index: true,
+        element: <Home />,
+      },
       {
         path: "contact",
         element: <h1>contact</h1>,
@@ -26,5 +34,13 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/mybookings",
+    element: <MyBookings />,
+  },
+  {
+    path: "/rooms",
+    element: <Rooms />,
   },
 ]);
