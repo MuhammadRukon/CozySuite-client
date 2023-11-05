@@ -1,16 +1,48 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Container from "../components/Container";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../provider/AuthProvider";
+import Datepicker from "../components/DatePicker";
+import { toast } from "react-toastify";
 
 const RoomDetails = () => {
+  const { id } = useParams();
   const loadedData = useLoaderData();
+
+  const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
+  const [date, setDate] = useState({});
   const handleOpenGallery = () => {
     setOpen(!open);
   };
   const [room] = loadedData;
-  console.log(room);
+
+  const booking = {
+    email: user?.email,
+    roomId: room?._id,
+    duration: date,
+  };
+
+  const handleBooking = () => {
+    if (!date.bookingDate) {
+      toast.error("please select date/s");
+      return;
+    }
+    if (date.bookingDate) {
+      toast.success("successfully booked");
+    }
+    fetch("http://localhost:5000/booking", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error.message));
+  };
   return (
     <MainLayout>
       <Container>
@@ -42,7 +74,7 @@ const RoomDetails = () => {
           <div className="p-8 py-10 font-semibold flex flex-col justify-between flex-1">
             <h2 className="text-5xl font-bold font-primary">{room.name}</h2>
             <p className="italic text-lg">{room.description}</p>
-
+            <Datepicker setDate={setDate} />
             <div className="space-y-4">
               <p className="">Available: {room.availability}</p>
               <p className="">Price: {room.pricePerNight}$</p>
@@ -50,8 +82,12 @@ const RoomDetails = () => {
             </div>
 
             <div className="flex gap-5 mt-5 xl:mt-0">
-              <button className="btn btn-primary font-bold">book now</button>
-              <button className="btn btn-primary font-bold">date picker</button>
+              <button
+                onClick={handleBooking}
+                className="btn hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold"
+              >
+                book now
+              </button>
             </div>
             <p
               onClick={handleOpenGallery}

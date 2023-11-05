@@ -5,7 +5,7 @@ const Banner = () => {
     <div className="hero ">
       <div className="w-full max-h-[91.3vh] overflow-hidden">
         <video
-          src={Promo}
+          src="https://firebasestorage.googleapis.com/v0/b/cozysuite-15955.appspot.com/o/promo.mp4?alt=media&token=e6f84cc1-0076-40af-9792-6a95858a0258&_gl=1*1f6xzbi*_ga*MTgzMjgxNzY0NC4xNjk5MTI4Mzgx*_ga_CW55HF8NVT*MTY5OTE5OTUwMi41LjEuMTY5OTE5OTcyMS4zOC4wLjA."
           autoPlay
           loop
           muted
