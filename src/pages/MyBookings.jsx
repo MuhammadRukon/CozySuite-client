@@ -1,9 +1,15 @@
+import { useLoaderData } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 
 const MyBookings = () => {
+  const loadedData = useLoaderData();
   return (
     <MainLayout>
-      <div>MyBookings</div>
+      <div>
+        {loadedData.map((data) => (
+          <p>{data.email}</p>
+        ))}
+      </div>
     </MainLayout>
   );
 };

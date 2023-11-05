@@ -7,29 +7,36 @@ import Datepicker from "../components/DatePicker";
 import { toast } from "react-toastify";
 
 const RoomDetails = () => {
-  const { id } = useParams();
   const loadedData = useLoaderData();
-
-  const { user } = useContext(AuthContext);
+  const [allBookings, setAllBookings] = useState(null);
+  const [effect, setEffect] = useState(false);
+  const { user, loading } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
-  const [date, setDate] = useState({});
+  const [date, setDate] = useState("");
+  const [room] = loadedData;
+  useEffect(() => {
+    fetch(`http://localhost:5000/booking/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setAllBookings(data))
+      .catch((error) => console.log(error.message));
+  }, [effect, loading]);
+  const booked = allBookings?.find((booking) => booking?.roomId === room?._id);
   const handleOpenGallery = () => {
     setOpen(!open);
   };
-  const [room] = loadedData;
 
   const booking = {
     email: user?.email,
     roomId: room?._id,
-    duration: date,
+    date,
   };
 
   const handleBooking = () => {
-    if (!date.bookingDate) {
+    if (!date) {
       toast.error("please select date/s");
       return;
     }
-    if (date.bookingDate) {
+    if (date) {
       toast.success("successfully booked");
     }
     fetch("http://localhost:5000/booking", {
@@ -40,7 +47,10 @@ const RoomDetails = () => {
       body: JSON.stringify(booking),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        setEffect(!effect);
+      })
       .catch((error) => console.log(error.message));
   };
   return (
@@ -81,14 +91,17 @@ const RoomDetails = () => {
               <p className="">Offers: {room.specialOffers}</p>
             </div>
 
-            <div className="flex gap-5 mt-5 xl:mt-0">
+            {!booked ? (
               <button
                 onClick={handleBooking}
-                className="btn hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold"
+                className="btn w-fit hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold"
               >
                 book now
               </button>
-            </div>
+            ) : (
+              <button className="btn w-fit btn-disabled">book now</button>
+            )}
+
             <p
               onClick={handleOpenGallery}
               className="capitalize text-xs italic underline font-bold opacity-70 text-primary cursor-pointer"

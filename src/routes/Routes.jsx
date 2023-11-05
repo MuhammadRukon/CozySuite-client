@@ -44,6 +44,7 @@ export const router = createBrowserRouter([
         <MyBookings />
       </PrivateRoute>
     ),
+    loader: () => fetch(`http://localhost:5000/booking`),
   },
   {
     path: "/rooms",

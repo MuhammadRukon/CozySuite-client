@@ -1,5 +1,3 @@
-import Promo from "/promo.mp4";
-
 const Banner = () => {
   return (
     <div className="hero ">

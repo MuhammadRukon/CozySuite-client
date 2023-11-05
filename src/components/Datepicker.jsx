@@ -10,9 +10,7 @@ const Datepicker = ({ setDate }) => {
       toast.error("select upcoming date please");
     }
     if (now < date) {
-      setDate({
-        bookingDate: date,
-      });
+      setDate(date);
     }
   };
   return (
