@@ -22,7 +22,7 @@ const Banner = () => {
             the best looking suites at the best budget possible. <br />
             <strong>Book your suite now!</strong>
           </p>
-          <button className="btn bg-primary text-white border-0">
+          <button className="btn bg-primary hover:text-black hover:bg-white text-white border-0">
             Book now
           </button>
         </div>
