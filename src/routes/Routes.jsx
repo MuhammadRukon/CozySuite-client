@@ -8,6 +8,7 @@ import Rooms from "../pages/Rooms";
 import Home from "../pages/Home";
 import PrivateRoute from "./PrivateRoute";
 import RoomDetails from "../pages/RoomDetails";
+import UpdateBooking from "../pages/UpdateBooking";
 
 export const router = createBrowserRouter([
   {
@@ -56,4 +57,11 @@ export const router = createBrowserRouter([
     loader: ({ params }) =>
       fetch(`http://localhost:5000/rooms/details/${params.id}`),
   },
+  {
+    path: "/mybooking/update/:id",
+    element: <UpdateBooking />,
+    loader: ({ params }) =>
+      fetch(`http://localhost:5000/mybookings/update/${params.id}`),
+  },
+  //
 ]);

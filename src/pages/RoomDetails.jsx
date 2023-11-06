@@ -16,7 +16,6 @@ const RoomDetails = () => {
   const [date, setDate] = useState("");
   const [room] = loadedData;
   const [availability, setAvailability] = useState(room?.availability);
-  console.log(availability);
   useEffect(() => {
     fetch(`http://localhost:5000/booking/${user?.email}`)
       .then((res) => res.json())
@@ -29,17 +28,17 @@ const RoomDetails = () => {
   };
 
   const booking = {
-    email: user?.email,
-    roomId: room?._id,
-    name: room?.name,
-    image: room?.image,
-    description: room?.description,
-    pricePerNight: room?.pricePerNight,
-    roomSize: room?.roomSize,
+    email: user.email,
+    roomId: room._id,
+    name: room.name,
+    image: room.image,
+    description: room.description,
+    pricePerNight: room.pricePerNight,
+    availability: availability - 1,
+    roomSize: room.roomSize,
     bookingDate: date,
-    specialOffers: room?.specialOffers,
+    specialOffers: room.specialOffers,
   };
-
   const handleBooking = () => {
     if (!date) {
       toast.error("please select date/s");
@@ -155,7 +154,7 @@ const RoomDetails = () => {
                 </div>
               ) : (
                 <div className="flex gap-5 my-5 2xl:my-0">
-                  <button className="btn w-fit btn-disabled">book now</button>
+                  <button className="btn w-fit btn-disabled">booked</button>
                   <button className="btn w-fit hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold">
                     Add Review
                   </button>
