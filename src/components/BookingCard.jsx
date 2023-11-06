@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import Swal from "sweetalert2";
 
 const BookingCard = ({ effect, room, setEffect }) => {
+  const now = moment();
+  const bookedDate = moment(room.bookingDate, "DD-MM-YYYY");
+  const daysInBetween = bookedDate.diff(now, "days");
+  console.log(daysInBetween);
+
   return (
     <div className="card border sm:card-side mt-10" key={room._id}>
       <figure className="sm:w-1/3 xl:w-2/6 p-8 sm:pr-0 relative">
@@ -44,6 +50,14 @@ const BookingCard = ({ effect, room, setEffect }) => {
         </Link>
         <button
           onClick={() => {
+            if (daysInBetween < 1) {
+              Swal.fire({
+                icon: "error",
+                title: "Unable to cancel!",
+                text: "user can only cancel atleast a day before the booking date! Try and update the date as your convenience.",
+              });
+              return;
+            }
             Swal.fire({
               title: room.name,
               html:
