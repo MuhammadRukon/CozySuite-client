@@ -7,11 +7,12 @@ import Swal from "sweetalert2";
 const MyBookings = () => {
   const { user, loading } = useContext(AuthContext);
   const [myBookings, setMyBookings] = useState(null);
+  const [effect, setEffect] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:5000/booking/${user?.email}`).then((res) =>
       res.json().then((data) => setMyBookings(data))
     );
-  }, [loading]);
+  }, [loading, effect]);
   console.log(myBookings);
   return (
     <MainLayout>
@@ -67,8 +68,38 @@ const MyBookings = () => {
                   <button
                     onClick={() => {
                       Swal.fire({
-                        title: "show error message if bookedDate > tomorrow",
-                        icon: "success",
+                        title: room.name,
+                        html:
+                          `<p>${room.description}</p>` +
+                          `<br/>` +
+                          `<p>Price: ${room.pricePerNight}$</p>` +
+                          `<br/>` +
+                          `<p>Offers: ${room.specialOffers}</p>`,
+
+                        imageUrl: room.image,
+                        imageWidth: 350,
+                        imageHeight: 200,
+                        showCancelButton: true,
+                        confirmButtonColor: "#d33",
+                        cancelButtonColor: "#003FBA",
+                        confirmButtonText: "Cancel Booking!",
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          console.log(room._id);
+                          fetch(`http://localhost:5000/booking/${room._id}`, {
+                            method: "DELETE",
+                          })
+                            .then((res) => res.json())
+                            .then((data) => {
+                              console.log(data);
+                            })
+                            .catch((error) => console.log(error.message));
+                          Swal.fire({
+                            title: "Cancelled!",
+                            icon: "success",
+                          });
+                        }
+                        setEffect(!effect);
                       });
                     }}
                     className="btn sm:w-[90px] md:w-fit hover:bg-red-600  bg-red-600 text-white  font-bold"
