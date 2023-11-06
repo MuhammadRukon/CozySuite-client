@@ -15,6 +15,8 @@ const RoomDetails = () => {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState("");
   const [room] = loadedData;
+  const [availability, setAvailability] = useState(room?.availability);
+  console.log(availability);
   useEffect(() => {
     fetch(`http://localhost:5000/booking/${user?.email}`)
       .then((res) => res.json())
@@ -73,6 +75,20 @@ const RoomDetails = () => {
             .then((data) => {
               console.log(data);
               setEffect(!effect);
+              // update seat
+              fetch(`http://localhost:5000/rooms/${room?._id}`, {
+                method: "PATCH",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify({ availability: room.availability - 1 }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  setAvailability(availability - 1);
+                })
+                .catch((error) => console.log(error.message));
             })
             .catch((error) => console.log(error.message));
           Swal.fire({
@@ -120,7 +136,7 @@ const RoomDetails = () => {
               <p className="mb-5 2xl:mb-0 italic text-lg">{room.description}</p>
               <Datepicker setDate={setDate} />
               <div className="mt-5 2xl:mt-0 space-y-4">
-                <p>Available: {room.availability}</p>
+                <p>Available: {availability}</p>
                 <p>Price: {room.pricePerNight}$</p>
                 <p>Offers: {room.specialOffers}</p>
               </div>
