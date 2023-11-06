@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <div className="hero ">
@@ -20,9 +22,12 @@ const Banner = () => {
             the best looking suites at the best budget possible. <br />
             <strong>Book your suite now!</strong>
           </p>
-          <button className="btn bg-primary hover:text-black hover:bg-white text-white border-0">
+          <Link
+            to="/rooms"
+            className="btn bg-primary hover:text-black hover:bg-white text-white border-0"
+          >
             Book now
-          </button>
+          </Link>
         </div>
       </div>
     </div>

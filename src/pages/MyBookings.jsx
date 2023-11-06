@@ -3,6 +3,7 @@ import Container from "../components/Container";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyBookings = () => {
   const { user, loading } = useContext(AuthContext);
@@ -110,7 +111,15 @@ const MyBookings = () => {
               </div>
             ))
           ) : (
-            <div>No data</div>
+            <div className="text-5xl text-center mt-28">
+              <p>You haven't booked anything!</p>
+              <Link
+                to="/rooms"
+                className="btn bg-primary mt-10 hover:border hover:border-primary hover:text-primary hover:bg-white text-white border-0"
+              >
+                Book now
+              </Link>
+            </div>
           )}
         </div>
       </Container>
