@@ -20,14 +20,6 @@ export const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
-      {
-        path: "contact",
-        element: <h1>contact</h1>,
-      },
-      {
-        path: "about",
-        element: <h1>about</h1>,
-      },
     ],
   },
   {
@@ -53,7 +45,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/rooms/details/:id",
-    element: <RoomDetails />,
+    element: (
+      <PrivateRoute>
+        <RoomDetails />
+      </PrivateRoute>
+    ),
     loader: ({ params }) =>
       fetch(`http://localhost:5000/rooms/details/${params.id}`),
   },

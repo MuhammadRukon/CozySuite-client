@@ -10,12 +10,13 @@ import {
 
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../config/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
   // sign up with email and password
   const createUser = (email, password) => {
     setLoading(true);
@@ -29,7 +30,6 @@ const AuthProvider = ({ children }) => {
   };
   //update user
   const updateUser = (name, photo) => {
-    setLoading(true);
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
@@ -48,8 +48,26 @@ const AuthProvider = ({ children }) => {
   //   on auth state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
+      //issue token
+      if (currentUser) {
+        axios
+          .post("http://localhost:5000/auth/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => console.log(res.data));
+      }
+      //remove token
+      else {
+        axios
+          .post("http://localhost:5000/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => console.log(res.data));
+      }
     });
     return () => unsubscribe();
   }, []);

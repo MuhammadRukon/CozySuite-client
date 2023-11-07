@@ -11,9 +11,12 @@ const MyBookings = () => {
   const [myBookings, setMyBookings] = useState(null);
   const [effect, setEffect] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${user?.email}`).then((res) =>
-      res.json().then((data) => setMyBookings(data))
-    );
+    fetch(`http://localhost:5000/booking/${user?.email}`, {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => setMyBookings(data))
+      .catch((error) => console.log(error.message));
   }, [loading, effect]);
   return (
     <MainLayout>

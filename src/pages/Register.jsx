@@ -38,7 +38,6 @@ const Register = () => {
           });
           updateUser(name, photo)
             .then(() => {
-              console.log("updated");
               navigate("/");
             })
             .catch((error) => console.log(error.message));

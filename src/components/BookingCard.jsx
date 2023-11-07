@@ -7,7 +7,6 @@ const BookingCard = ({ effect, room, setEffect }) => {
   const now = moment();
   const bookedDate = moment(room.bookingDate, "DD-MM-YYYY");
   const daysInBetween = bookedDate.diff(now, "days");
-  console.log(daysInBetween);
 
   return (
     <div className="card border sm:card-side mt-10" key={room._id}>

@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 
 const RoomDetails = () => {
   const loadedData = useLoaderData();
-  const [allBookings, setAllBookings] = useState(null);
+  const [allBookings, setAllBookings] = useState([]);
   const [effect, setEffect] = useState(false);
   const { user, loading } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
@@ -17,11 +17,14 @@ const RoomDetails = () => {
   const [room] = loadedData;
   const [availability, setAvailability] = useState(room?.availability);
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${user?.email}`)
+    fetch(`http://localhost:5000/booking/${user?.email}`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => setAllBookings(data))
       .catch((error) => console.log(error.message));
   }, [effect, loading]);
+
   const booked = allBookings?.find((booking) => booking?.roomId === room?._id);
   const handleOpenGallery = () => {
     setOpen(!open);
