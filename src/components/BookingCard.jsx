@@ -43,7 +43,7 @@ const BookingCard = ({ effect, room, setEffect }) => {
 
       <div className="flex sm:flex-col pt-0 sm:pt-8  p-8 pl-8 sm:pl-0  sm:w-1/6 sm:justify-center gap-5">
         <Link
-          to={`/mybooking/update/${room._id}`}
+          to={`/mybooking/update/${room?._id}`}
           className="btn sm:w-[90px]   md:w-fit bg-secondary hover:bg-secondary text-white  font-bold"
         >
           update booking
@@ -76,7 +76,18 @@ const BookingCard = ({ effect, room, setEffect }) => {
               confirmButtonText: "Cancel Booking!",
             }).then((result) => {
               if (result.isConfirmed) {
-                console.log(room._id);
+                // increment seat
+                fetch(`http://localhost:5000/rooms/${room.roomId}`, {
+                  method: "PATCH",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify({ availability: room.availability + 1 }),
+                })
+                  .then((res) => res.json())
+                  .then((data) => console.log(data))
+                  .catch((error) => console.log(error.message));
+                // delete
                 fetch(`http://localhost:5000/booking/${room._id}`, {
                   method: "DELETE",
                 })
