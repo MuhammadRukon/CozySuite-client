@@ -1,11 +1,13 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Container from "../components/Container";
+import ReviewModal from "../components/ReviewModal";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Datepicker from "../components/DatePicker";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import ReactStars from "react-stars";
 
 const RoomDetails = () => {
   const loadedData = useLoaderData();
@@ -29,7 +31,11 @@ const RoomDetails = () => {
   const handleOpenGallery = () => {
     setOpen(!open);
   };
-
+  const ratingTotal = room?.reviews?.reduce(
+    (acc, review) => review.rating + acc,
+    0
+  );
+  const ratingAverage = ratingTotal / room?.reviews?.length;
   const booking = {
     email: user?.email,
     roomId: room._id,
@@ -104,7 +110,7 @@ const RoomDetails = () => {
   return (
     <MainLayout>
       <Container>
-        <div className=" my-8 lg:my-20 px-5">
+        <div className=" my-8 lg:my-20 px-5 lg:px-0">
           <h2 className="text-center font-primary text-5xl">Room details</h2>
           {loading ? (
             <h1>loading</h1>
@@ -146,28 +152,41 @@ const RoomDetails = () => {
                   <p>Available: {availability}</p>
                   <p>Price: {room.pricePerNight}$</p>
                   <p>Offers: {room.specialOffers}</p>
+                  <div className="flex gap-1 items-center">
+                    {room?.reviews?.length ? (
+                      <>
+                        <div className="flex  gap-1">
+                          <p>{ratingAverage}</p>
+                          <ReactStars
+                            count={5}
+                            size={16}
+                            className="-mt-[1px]"
+                            edit={false}
+                            value={ratingAverage}
+                            color2={"#ffd700"}
+                          />
+                        </div>
+                        <p className="opacity-70 -mt-[1px]">
+                          ({room?.reviews?.length})
+                        </p>
+                      </>
+                    ) : (
+                      <p className="italic opacity-60">No reviews</p>
+                    )}
+                  </div>
                 </div>
 
-                {!booked ? (
-                  <div className="flex gap-5 my-5 2xl:my-0">
-                    <button
-                      onClick={handleBooking}
-                      className="btn w-fit hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold"
-                    >
-                      book now
-                    </button>
-                    <button className="btn btn-disabled w-fit  font-bold">
-                      Add Review
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex gap-5 my-5 2xl:my-0">
-                    <button className="btn w-fit btn-disabled">booked</button>
-                    <button className="btn w-fit hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold">
-                      Add Review
-                    </button>
-                  </div>
-                )}
+                <div className="flex gap-5 my-5 2xl:my-0">
+                  <button
+                    onClick={handleBooking}
+                    className={`btn w-fit ${
+                      booked ? "btn-disabled" : ""
+                    } hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold`}
+                  >
+                    book now
+                  </button>
+                  <ReviewModal booked={booked} room={room} />
+                </div>
 
                 <p
                   onClick={handleOpenGallery}

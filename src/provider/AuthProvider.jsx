@@ -58,7 +58,8 @@ const AuthProvider = ({ children }) => {
           .post("http://localhost:5000/auth/jwt", loggedUser, {
             withCredentials: true,
           })
-          .then((res) => console.log(res.data));
+          .then()
+          .catch((error) => console.log(error));
       }
       //remove token
       else {
