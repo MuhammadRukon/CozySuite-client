@@ -2,11 +2,13 @@ import { useLoaderData } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Container from "../components/Container";
 import RoomCards from "../components/RoomCards";
+import Head from "../components/Head";
 
 const Rooms = () => {
   const loadedData = useLoaderData();
   return (
     <MainLayout>
+      <Head title={"Rooms"} />
       <Container>
         <div className="my-8 lg:my-20 px-5">
           <h2 className="text-center font-primary text-5xl">Rooms</h2>

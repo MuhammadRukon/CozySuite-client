@@ -23,7 +23,7 @@ const FeaturedRooms = () => {
 
   return (
     <Container>
-      <div className="my-8 lg:my-20 px-5">
+      <div className="my-8 lg:my-10 px-5">
         <h2 className="text-center font-primary text-5xl">Featured Rooms</h2>
         <h2 className="text-center text-md mt-4 italic">
           Rooms that are most reviewed.

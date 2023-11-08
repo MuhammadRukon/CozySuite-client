@@ -5,6 +5,7 @@ import Container from "../components/Container";
 import Datepicker from "../components/DatePicker";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import Head from "../components/Head";
 
 const UpdateBooking = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const UpdateBooking = () => {
   };
   return (
     <MainLayout>
+      <Head title={"Update booking"} />
       <Container>
         <div className=" my-8 lg:my-20 px-5">
           <h2 className="text-center font-primary text-5xl">Room details</h2>

@@ -5,6 +5,7 @@ import { AuthContext } from "../provider/AuthProvider";
 
 import { Link } from "react-router-dom";
 import BookingCard from "../components/BookingCard";
+import Head from "../components/Head";
 
 const MyBookings = () => {
   const { user, loading } = useContext(AuthContext);
@@ -20,6 +21,7 @@ const MyBookings = () => {
   }, [loading, effect]);
   return (
     <MainLayout>
+      <Head title={"My bookings"} />
       <Container>
         <div className="my-8 lg:my-20 px-5">
           <h2 className="text-center font-primary text-5xl">My Bookings</h2>

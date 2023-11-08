@@ -45,15 +45,9 @@ export const router = createBrowserRouter([
   },
   {
     path: "/rooms/details/:id",
-    element: (
-      <PrivateRoute>
-        <RoomDetails />
-      </PrivateRoute>
-    ),
+    element: <RoomDetails />,
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/rooms/details/${params.id}`, {
-        credentials: "include",
-      }),
+      fetch(`http://localhost:5000/rooms/details/${params.id}`),
   },
   {
     path: "/mybooking/update/:id",

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SocialLogin from "../components/SocialLogin";
 import { AuthContext } from "../provider/AuthProvider";
+import Head from "../components/Head";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Login = () => {
   };
   return (
     <div className="hero py-10 bg-base-200">
+      <Head title={"login"} />
       <div className="hero-content  flex-col">
         <div className="text-center">
           <h1 className="text-5xl font-bold">Login now!</h1>

@@ -7,7 +7,7 @@ const Banner = () => {
   const { user } = useContext(AuthContext);
   return (
     <div className="hero ">
-      <div className="w-full h-[400px] sm:[600px] lg:h-[700px]  overflow-hidden">
+      <div className="w-full h-[450px]  lg:h-[850px]  overflow-hidden">
         <video
           src={promo}
           autoPlay

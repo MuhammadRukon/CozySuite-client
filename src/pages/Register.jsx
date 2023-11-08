@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SocialLogin from "../components/SocialLogin";
 import { AuthContext } from "../provider/AuthProvider";
+import Head from "../components/Head";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const Register = () => {
   };
   return (
     <div className="hero py-10">
+      <Head title={"Register"} />
       <div className="hero-content lg:w-[30vw] flex-col">
         <div className="text-center">
           <h1 className="text-5xl font-bold">Register now!</h1>

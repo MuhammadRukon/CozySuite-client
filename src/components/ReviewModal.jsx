@@ -44,7 +44,7 @@ const ReviewModal = ({ booked, room }) => {
 
   const handleSubmit = () => {
     //get id and update room/update/:id with rating use $push
-    fetch(`http://localhost:5000/rooms/${room._id}`, {
+    fetch(`http://localhost:5000/rooms/${room?._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -63,7 +63,7 @@ const ReviewModal = ({ booked, room }) => {
   };
 
   useEffect(() => {
-    const exists = room.reviews.find((review) => review.email === user.email);
+    const exists = room.reviews.find((review) => review?.email === user?.email);
     if (exists) {
       setReviewed(true);
     }

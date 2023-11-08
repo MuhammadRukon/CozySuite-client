@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Container from "../components/Container";
 import ReviewModal from "../components/ReviewModal";
@@ -8,6 +8,7 @@ import Datepicker from "../components/DatePicker";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import ReactStars from "react-stars";
+import Head from "../components/Head";
 
 const RoomDetails = () => {
   const loadedData = useLoaderData();
@@ -28,7 +29,9 @@ const RoomDetails = () => {
       .catch((error) => console.log(error.message));
   }, [effect, loading]);
 
-  const booked = allBookings?.find((booking) => booking?.roomId === room?._id);
+  const booked =
+    allBookings.length &&
+    allBookings?.find((booking) => booking?.roomId === room?._id);
   const handleOpenGallery = () => {
     setOpen(!open);
   };
@@ -112,6 +115,7 @@ const RoomDetails = () => {
   };
   return (
     <MainLayout>
+      <Head title={"Room details"} />
       <Container>
         <div className=" my-8 lg:my-20 px-5 lg:px-0">
           <h2 className="text-center font-primary text-5xl">Room details</h2>
@@ -180,14 +184,29 @@ const RoomDetails = () => {
                 </div>
 
                 <div className="flex gap-5 my-5 2xl:my-0">
-                  <button
-                    onClick={handleBooking}
-                    className={`btn w-fit ${
-                      booked ? "btn-disabled" : ""
-                    } hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold`}
-                  >
-                    {booked ? "booked" : "book now"}
-                  </button>
+                  {room?.availability ? (
+                    user ? (
+                      <button
+                        onClick={handleBooking}
+                        className={`btn w-fit ${
+                          booked ? "btn-disabled" : ""
+                        } hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold`}
+                      >
+                        {booked ? "booked" : "book now"}
+                      </button>
+                    ) : (
+                      <Link
+                        className="btn w-fit hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold"
+                        to="/login"
+                      >
+                        Book now
+                      </Link>
+                    )
+                  ) : (
+                    <button className="btn w-fit btn-disabled font-bold">
+                      Not Available
+                    </button>
+                  )}
                   <ReviewModal booked={booked} room={room} />
                 </div>
 
