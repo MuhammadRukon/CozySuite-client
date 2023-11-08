@@ -14,7 +14,7 @@ const Home = () => {
     });
   }, []);
   return (
-    <>
+    <div className="overflow-hidden">
       <Head title={"Home"} />
       <div data-aos="zoom-in">
         <Banner />
@@ -28,7 +28,7 @@ const Home = () => {
       <div data-aos="fade-up" data-aos-offset="200">
         <GoogleMap />
       </div>
-    </>
+    </div>
   );
 };
 

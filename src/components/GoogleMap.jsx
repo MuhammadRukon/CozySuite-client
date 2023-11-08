@@ -6,7 +6,7 @@ import errorSvg from "../assets/maps.json";
 const GoogleMap = () => {
   return (
     <Container>
-      <div className="my-8 lg:my-20 px-5">
+      <div className="my-8 pt-24 lg:my-20 px-5">
         <h2 className="text-center font-primary text-5xl">Find Us</h2>
 
         <div className="flex flex-col lg:flex-row mt-10 items-center gap-7">
