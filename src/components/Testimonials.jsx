@@ -27,7 +27,7 @@ const Testimonials = () => {
   };
   useEffect(() => {
     axios
-      .get("http://localhost:5000/rooms")
+      .get("https://booking-server-jet.vercel.app/rooms")
       .then((res) => {
         const loadedData = res?.data;
         const filteredData = loadedData.filter(

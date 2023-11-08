@@ -25,7 +25,7 @@ const SocialLogin = ({ setErrorMessage }) => {
     <>
       <div
         onClick={handleLoginWithGoogle}
-        className="mx-auto text-4xl cursor-pointer"
+        className="mx-auto  text-4xl cursor-pointer"
       >
         <AiFillGoogleCircle />
       </div>

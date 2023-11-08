@@ -28,7 +28,11 @@ const Rooms = () => {
       <Container>
         <div className="my-8 lg:my-20 px-5 xl:px-0">
           <h2 className="text-center font-primary text-5xl">Rooms</h2>
-          <div className="flex items-center flex-col lg:flex-row gap-5 lg:items-start mt-4 lg:mt-10 justify-between">
+          <div
+            className={`flex items-center  flex-col lg:flex-row gap-5 ${
+              !loadedData.length ? "py-[70px] xl:py-[116px]" : ""
+            } lg:items-start mt-4 lg:mt-10 justify-between`}
+          >
             <div className="border p-6 rounded-xl">
               {/*  */}
               <ReactSlider
@@ -102,7 +106,10 @@ const Rooms = () => {
               </button>
             </div>
 
-            <div className=" flex-auto grid grid-cols-1 sm:grid-cols-2  gap-5">
+            <div
+              className={`flex-auto grid grid-cols-1 sm:grid-cols-2 
+                 gap-5`}
+            >
               {loadedData.length ? (
                 loadedData.map((data) => (
                   <RoomCards
@@ -112,7 +119,7 @@ const Rooms = () => {
                   />
                 ))
               ) : (
-                <div className="col-span-full text-3xl text-center">
+                <div className="col-span-full text-3xl  text-center">
                   <Lottie
                     className="w-1/2 mx-auto"
                     loop={true}

@@ -44,7 +44,7 @@ const ReviewModal = ({ booked, room }) => {
 
   const handleSubmit = () => {
     //get id and update room/update/:id with rating use $push
-    fetch(`http://localhost:5000/rooms/${room?._id}`, {
+    fetch(`https://booking-server-jet.vercel.app/rooms/${room?._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

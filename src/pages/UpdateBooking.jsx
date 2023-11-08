@@ -6,14 +6,16 @@ import Datepicker from "../components/DatePicker";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import Head from "../components/Head";
+import moment from "moment";
 
 const UpdateBooking = () => {
   const navigate = useNavigate();
   const loadedDate = useLoaderData();
+  const today = moment().format("DD-MM-YYYY");
   const [room] = loadedDate;
   const [date, setDate] = useState("");
   const handleUpdate = () => {
-    if (date === room.bookingDate) {
+    if (date === room.bookingDate || date === today) {
       Swal.fire({
         title: "Pick a valid date!",
         icon: "error",
@@ -22,14 +24,17 @@ const UpdateBooking = () => {
       });
       return;
     }
-    fetch(`http://localhost:5000/mybookings/update/${room._id}`, {
-      credentials: "include",
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ date }),
-    })
+    fetch(
+      `https://booking-server-jet.vercel.app/mybookings/update/${room._id}`,
+      {
+        credentials: "include",
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ date }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         toast.success("Successfully updated booking Date", {
@@ -43,7 +48,7 @@ const UpdateBooking = () => {
     <MainLayout>
       <Head title={"Update booking"} />
       <Container>
-        <div className=" my-8 lg:my-20 px-5">
+        <div className=" my-8 lg:my-24 px-5 lg:px-0">
           <h2 className="text-center font-primary text-5xl">Room details</h2>
           <div className="card border lg:card-side mt-10">
             <figure className="w-full lg:w-1/2 xl:w-3/5 p-8 relative">

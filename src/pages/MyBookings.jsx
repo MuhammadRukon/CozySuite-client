@@ -12,7 +12,7 @@ const MyBookings = () => {
   const [myBookings, setMyBookings] = useState(null);
   const [effect, setEffect] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${user?.email}`, {
+    fetch(`https://booking-server-jet.vercel.app/booking/${user?.email}`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -23,23 +23,25 @@ const MyBookings = () => {
     <MainLayout>
       <Head title={"My bookings"} />
       <Container>
-        <div className="my-8 lg:my-20 px-5">
+        <div className="my-8 mt-24 sm:my-24 md:my-28  px-5">
           <h2 className="text-center font-primary text-5xl">My Bookings</h2>
           {myBookings?.length ? (
-            myBookings.map((room) => (
-              <BookingCard
-                effect={effect}
-                setEffect={setEffect}
-                room={room}
-                key={room._id}
-              />
-            ))
+            <div className="sm:pb-[35px] md:pb-[70px]">
+              {myBookings.map((room) => (
+                <BookingCard
+                  effect={effect}
+                  setEffect={setEffect}
+                  room={room}
+                  key={room._id}
+                />
+              ))}
+            </div>
           ) : (
-            <div className="text-5xl text-center mt-28">
+            <div className="text-5xl text-center my-20 xl:my-[180px]">
               <p>You haven't booked anything!</p>
               <Link
                 to="/rooms"
-                className="btn bg-primary mt-10 hover:border hover:border-primary hover:text-primary hover:bg-white text-white border-0"
+                className="btn bg-primary mt-20 mb-40 xl:mb-20 hover:border hover:border-primary hover:text-primary hover:bg-white text-white border-0"
               >
                 Book now
               </Link>

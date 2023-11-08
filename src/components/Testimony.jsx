@@ -1,7 +1,6 @@
 import ReactStars from "react-stars";
 
 const Testimony = ({ review }) => {
-  console.log(review);
   return (
     <div className="bg-white border ">
       <div className="flex flex-col md:flex-row w-[80%] md:w-[60%] mx-auto items-center gap-4 md:gap-8 p-8">

@@ -21,12 +21,16 @@ const RoomDetails = () => {
   const [room] = loadedData;
   const [availability, setAvailability] = useState(room?.availability);
   useEffect(() => {
-    fetch(`http://localhost:5000/booking/${user?.email}`, {
-      credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => setAllBookings(data))
-      .catch((error) => console.log(error.message));
+    user &&
+      fetch(`https://booking-server-jet.vercel.app/booking/${user?.email}`, {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setAllBookings(data);
+          console.log(data);
+        })
+        .catch((error) => console.log(error.message));
   }, [effect, loading]);
 
   const booked =
@@ -78,7 +82,7 @@ const RoomDetails = () => {
         confirmButtonText: "Confirm Booking!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch("http://localhost:5000/booking", {
+          fetch("https://booking-server-jet.vercel.app/booking", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -90,13 +94,16 @@ const RoomDetails = () => {
               console.log(data);
               setEffect(!effect);
               // update seat
-              fetch(`http://localhost:5000/rooms/${room?._id}`, {
-                method: "PATCH",
-                headers: {
-                  "content-type": "application/json",
-                },
-                body: JSON.stringify({ availability: room.availability - 1 }),
-              })
+              fetch(
+                `https://booking-server-jet.vercel.app/rooms/${room?._id}`,
+                {
+                  method: "PATCH",
+                  headers: {
+                    "content-type": "application/json",
+                  },
+                  body: JSON.stringify({ availability: room.availability - 1 }),
+                }
+              )
                 .then((res) => res.json())
                 .then((data) => {
                   console.log(data);
@@ -117,7 +124,7 @@ const RoomDetails = () => {
     <MainLayout>
       <Head title={"Room details"} />
       <Container>
-        <div className=" my-8 lg:my-20 px-5 lg:px-0">
+        <div className=" my-8 lg:my-24 px-5 lg:px-0">
           <h2 className="text-center font-primary text-5xl">Room details</h2>
           {loading ? (
             <h1>loading</h1>
@@ -163,7 +170,7 @@ const RoomDetails = () => {
                     {room?.reviews?.length ? (
                       <>
                         <div className="flex  gap-1">
-                          <p>{ratingAverage}</p>
+                          <p>{ratingAverage.toFixed(2)}</p>
                           <ReactStars
                             count={5}
                             size={16}

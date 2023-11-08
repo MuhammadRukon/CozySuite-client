@@ -8,6 +8,7 @@ const Datepicker = ({ setDate }) => {
     const date = moment(dates.$d).format("DD-MM-YYYY");
     if (now >= date) {
       toast.error("select upcoming date please");
+      return;
     }
     if (now < date) {
       setDate(date);

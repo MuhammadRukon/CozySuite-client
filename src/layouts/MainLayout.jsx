@@ -39,7 +39,7 @@ const MainLayout = ({ children }) => {
           </ul>
         </div>
       </div>
-      <footer className="footer gap-0 flex min-w-full justify-center footer-center p-4 bg-primary text-white">
+      <footer className="footer gap-0 flex min-w-full  justify-center footer-center p-4 bg-primary text-white">
         <img className="w-10" src={logo} alt="" />
         <aside>
           <p>Copyright © 2023 - All right reserved by PH Tech Ltd.</p>

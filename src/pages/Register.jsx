@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import SocialLogin from "../components/SocialLogin";
 import { AuthContext } from "../provider/AuthProvider";
 import Head from "../components/Head";
+import MainLayout from "../layouts/MainLayout";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -47,79 +48,83 @@ const Register = () => {
     }
   };
   return (
-    <div className="hero py-10">
-      <Head title={"Register"} />
-      <div className="hero-content lg:w-[30vw] flex-col">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold">Register now!</h1>
-        </div>
-        <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100">
-          <div className="card-body ">
-            <form onSubmit={handleRegister}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Name</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  required
-                  className="input input-bordered focus:outline-none"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Photo URL</span>
-                </label>
-                <input
-                  type="text"
-                  name="photo"
-                  required
-                  placeholder="photo url"
-                  className="input input-bordered focus:outline-none"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered focus:outline-none"
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered focus:outline-none"
-                />
-              </div>
-              <p className="text-red-700 ml-1 text-sm">{errorMessage}</p>
-              <div className="form-control mt-6">
-                <button className="btn btn-neutral">Register</button>
-              </div>
-            </form>
-            <p className="text-center">
-              Dont have account? Please{" "}
-              <Link className="text-green-700 font-bold" to="/login">
-                login
-              </Link>
-            </p>
-            <hr className="w-[60%] mx-auto border mt-2" />
-            <p className="text-center">or</p>
-            <SocialLogin setErrorMessage={setErrorMessage} />
+    <MainLayout>
+      <div className="hero py-10">
+        <Head title={"Register"} />
+        <div className="hero-content lg:w-[30vw] flex-col">
+          <div className="text-center">
+            <h1 className="text-5xl font-bold">Register now!</h1>
+          </div>
+          <div className="card flex-shrink-0 w-full drop-shadow-2xl bg-base-100">
+            <div className="card-body ">
+              <form onSubmit={handleRegister}>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    required
+                    className="input input-bordered focus:outline-none"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Photo URL</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="photo"
+                    required
+                    placeholder="photo url"
+                    className="input input-bordered focus:outline-none"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    className="input input-bordered focus:outline-none"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    className="input input-bordered focus:outline-none"
+                  />
+                </div>
+                <p className="text-red-700 ml-1 text-sm">{errorMessage}</p>
+                <div className="form-control mt-6">
+                  <button className="btn bg-primary text-white">
+                    Register
+                  </button>
+                </div>
+              </form>
+              <p className="text-center">
+                Dont have account? Please{" "}
+                <Link className="text-green-700 font-bold" to="/login">
+                  login
+                </Link>
+              </p>
+              <hr className="w-[60%] mx-auto border mt-2" />
+              <p className="text-center">or</p>
+              <SocialLogin setErrorMessage={setErrorMessage} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 

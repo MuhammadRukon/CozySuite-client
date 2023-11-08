@@ -48,14 +48,14 @@ const AuthProvider = ({ children }) => {
   //   on auth state change
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const userEmail = currentUser?.email || user?.email;
-      const loggedUser = { email: userEmail };
       setUser(currentUser);
       setLoading(false);
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       //issue token
       if (currentUser) {
         axios
-          .post("http://localhost:5000/auth/jwt", loggedUser, {
+          .post("https://booking-server-jet.vercel.app/auth/jwt", loggedUser, {
             withCredentials: true,
           })
           .then()
@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
       //remove token
       else {
         axios
-          .post("http://localhost:5000/logout", loggedUser, {
+          .post("https://booking-server-jet.vercel.app/logout", loggedUser, {
             withCredentials: true,
           })
           .then((res) => console.log(res.data));

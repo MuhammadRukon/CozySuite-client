@@ -41,21 +41,27 @@ export const router = createBrowserRouter([
   {
     path: "/rooms",
     element: <Rooms />,
-    loader: () => fetch("http://localhost:5000/rooms"),
+    loader: () =>
+      fetch("https://booking-server-jet.vercel.app/rooms", {
+        credentials: "include",
+      }),
   },
   {
     path: "/rooms/details/:id",
     element: <RoomDetails />,
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/rooms/details/${params.id}`),
+      fetch(`https://booking-server-jet.vercel.app/rooms/details/${params.id}`),
   },
   {
     path: "/mybooking/update/:id",
     element: <UpdateBooking />,
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/mybookings/update/${params.id}`, {
-        credentials: "include",
-      }),
+      fetch(
+        `https://booking-server-jet.vercel.app/mybookings/update/${params.id}`,
+        {
+          credentials: "include",
+        }
+      ),
   },
   //
 ]);

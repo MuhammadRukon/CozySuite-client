@@ -76,23 +76,32 @@ const BookingCard = ({ effect, room, setEffect }) => {
             }).then((result) => {
               if (result.isConfirmed) {
                 // increment seat
-                fetch(`http://localhost:5000/rooms/${room.roomId}`, {
-                  method: "PATCH",
-                  headers: {
-                    "content-type": "application/json",
-                  },
-                  body: JSON.stringify({ availability: room.availability + 1 }),
-                })
+                fetch(
+                  `https://booking-server-jet.vercel.app/rooms/${room.roomId}`,
+                  {
+                    method: "PATCH",
+                    headers: {
+                      "content-type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      availability: room.availability + 1,
+                    }),
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => console.log(data))
                   .catch((error) => console.log(error.message));
                 // delete
-                fetch(`http://localhost:5000/booking/${room._id}`, {
-                  method: "DELETE",
-                })
+                fetch(
+                  `https://booking-server-jet.vercel.app/booking/${room._id}`,
+                  {
+                    method: "DELETE",
+                  }
+                )
                   .then((res) => res.json())
                   .then((data) => {
                     console.log(data);
+                    setEffect(!effect);
                   })
                   .catch((error) => console.log(error.message));
                 Swal.fire({
@@ -100,7 +109,6 @@ const BookingCard = ({ effect, room, setEffect }) => {
                   icon: "success",
                 });
               }
-              setEffect(!effect);
             });
           }}
           className="btn sm:w-[90px] md:w-fit hover:bg-red-600  bg-red-600 text-white  font-bold"
