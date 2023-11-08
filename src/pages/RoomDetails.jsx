@@ -165,6 +165,7 @@ const RoomDetails = () => {
                 <div className="mt-5 2xl:mt-0 space-y-4">
                   <p>Available: {availability}</p>
                   <p>Price: {room.pricePerNight}$</p>
+                  <p>Size: {room.roomSize}</p>
                   <p>Offers: {room.specialOffers}</p>
                   <div className="flex gap-1 items-center">
                     {room?.reviews?.length ? (

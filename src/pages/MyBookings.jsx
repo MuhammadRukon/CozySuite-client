@@ -26,7 +26,7 @@ const MyBookings = () => {
         <div className="my-8 mt-24 sm:my-24 md:my-28  px-5">
           <h2 className="text-center font-primary text-5xl">My Bookings</h2>
           {myBookings?.length ? (
-            <div className="sm:pb-[35px] md:pb-[70px]">
+            <div className="sm:pb-[35px] pt-14 md:pb-[70px]">
               {myBookings.map((room) => (
                 <BookingCard
                   effect={effect}

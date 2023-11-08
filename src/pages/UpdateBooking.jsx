@@ -49,7 +49,7 @@ const UpdateBooking = () => {
       <Head title={"Update booking"} />
       <Container>
         <div className=" my-8 lg:my-24 px-5 lg:px-0">
-          <h2 className="text-center font-primary text-5xl">Room details</h2>
+          <h2 className="text-center font-primary text-5xl">Update Booking</h2>
           <div className="card border lg:card-side mt-10">
             <figure className="w-full lg:w-1/2 xl:w-3/5 p-8 relative">
               <img
