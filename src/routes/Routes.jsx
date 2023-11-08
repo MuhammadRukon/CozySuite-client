@@ -51,13 +51,17 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/rooms/details/${params.id}`),
+      fetch(`http://localhost:5000/rooms/details/${params.id}`, {
+        credentials: "include",
+      }),
   },
   {
     path: "/mybooking/update/:id",
     element: <UpdateBooking />,
     loader: ({ params }) =>
-      fetch(`http://localhost:5000/mybookings/update/${params.id}`),
+      fetch(`http://localhost:5000/mybookings/update/${params.id}`, {
+        credentials: "include",
+      }),
   },
   //
 ]);

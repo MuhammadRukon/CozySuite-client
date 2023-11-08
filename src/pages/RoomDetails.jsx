@@ -16,6 +16,7 @@ const RoomDetails = () => {
   const { user, loading } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState("");
+  console.log(loadedData);
   const [room] = loadedData;
   const [availability, setAvailability] = useState(room?.availability);
   useEffect(() => {
@@ -60,6 +61,8 @@ const RoomDetails = () => {
           `<p>${room.description}</p>` +
           `<br/>` +
           `<p>Price: ${room.pricePerNight}$</p>` +
+          `<br/>` +
+          `<p>Date: ${date}</p>` +
           `<br/>` +
           `<p>Offers: ${room.specialOffers}</p>`,
 
@@ -171,7 +174,7 @@ const RoomDetails = () => {
                         </p>
                       </>
                     ) : (
-                      <p className="italic opacity-60">No reviews</p>
+                      <p className="italic opacity-60">No reviews.</p>
                     )}
                   </div>
                 </div>
@@ -183,7 +186,7 @@ const RoomDetails = () => {
                       booked ? "btn-disabled" : ""
                     } hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold`}
                   >
-                    book now
+                    {booked ? "booked" : "book now"}
                   </button>
                   <ReviewModal booked={booked} room={room} />
                 </div>

@@ -1,6 +1,9 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ReactStars from "react-stars";
 import { AuthContext } from "../provider/AuthProvider";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ReviewModal = ({ booked, room }) => {
   const [rating, setRating] = useState(0);
@@ -9,6 +12,9 @@ const ReviewModal = ({ booked, room }) => {
   const [review, setReview] = useState({});
   const [done, setDone] = useState(false);
   const { user } = useContext(AuthContext);
+  const [reviewed, setReviewed] = useState(false);
+  const time = moment().format("h:mma DD-MM-YYYY");
+  const navigate = useNavigate();
 
   const handleReview = () => {
     setErrorMessage("");
@@ -21,6 +27,8 @@ const ReviewModal = ({ booked, room }) => {
       reviewText,
       user: user.displayName,
       userImg: user.photoURL,
+      email: user.email,
+      timeStamp: time,
     });
     setDone(true);
     console.log(review);
@@ -50,17 +58,25 @@ const ReviewModal = ({ booked, room }) => {
     setDone(false);
     setReviewText("");
     setRating(0);
+    setReviewed(true);
+    toast.success("successfully added review.");
   };
 
+  useEffect(() => {
+    const exists = room.reviews.find((review) => review.email === user.email);
+    if (exists) {
+      setReviewed(true);
+    }
+  }, []);
   return (
     <>
       <button
         onClick={() => document.getElementById("my_modal_1").showModal()}
         className={`btn w-fit ${
-          !booked ? "btn-disabled" : ""
+          !booked || reviewed ? "btn-disabled" : ""
         } hover:border-primary hover:text-primary bg-primary text-white hover:bg-white font-bold`}
       >
-        Add Review
+        {reviewed ? "Reviewed" : "Add Review"}
       </button>
       <dialog id="my_modal_1" className="modal">
         <div className="modal-box p-10 max-w-3xl text-center">

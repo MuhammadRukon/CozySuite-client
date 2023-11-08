@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 import Container from "../components/Container";
 import Datepicker from "../components/DatePicker";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const UpdateBooking = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const UpdateBooking = () => {
       return;
     }
     fetch(`http://localhost:5000/mybookings/update/${room._id}`, {
+      credentials: "include",
       method: "PATCH",
       headers: {
         "content-type": "application/json",
@@ -29,7 +31,9 @@ const UpdateBooking = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        toast.success("Successfully updated booking Date", {
+          autoClose: 3000,
+        });
         navigate("/mybookings");
       })
       .catch((error) => console.log(error.message));

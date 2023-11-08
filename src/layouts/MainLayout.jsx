@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Container from "../components/Container";
 import Navbar from "../components/Navbar";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import NavbarLinks from "../components/NavbarLinks";
+import { AuthContext } from "../provider/AuthProvider";
 
 const MainLayout = ({ children }) => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="drawer">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
 
-      <div className="drawer-content flex flex-col">
-        <div className="w-full p-0 navbar min-h-[80px] bg-primary">
+      <div className="drawer-content  flex flex-col">
+        <div className="w-full p-0 px-4 xl-px-0 navbar h-[80px] min-h-[80px] bg-primary">
           <Navbar />
         </div>
         {/* Page content here */}
@@ -25,12 +27,14 @@ const MainLayout = ({ children }) => {
         ></label>
         <ul className="menu pt-4 w-80 min-h-full gap-1 bg-base-200">
           <NavbarLinks />
-          <NavLink
-            to="/login"
-            className="btn -mx-[1px] bg-primary hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
+          <Link
+            to="/register"
+            className={` ${
+              user ? "btn-disabled" : ""
+            } btn bg-primary hover:text-black hover:bg-white text-white border-0`}
           >
-            Login
-          </NavLink>
+            Register Now
+          </Link>
         </ul>
       </div>
     </div>

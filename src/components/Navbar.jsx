@@ -13,6 +13,7 @@ const Navbar = () => {
   };
   return (
     <Container>
+      {/* mr-4 xl:mr-0 */}
       <div className="flex-none lg:hidden">
         <label
           htmlFor="my-drawer-3"
@@ -44,33 +45,35 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="flex-none hidden lg:block">
-        <ul className="menu menu-horizontal gap-5">
+        <ul className="menu menu-horizontal gap-3 mr-2">
           {/* Navbar menu content here */}
           <NavbarLinks />
-          {!user && (
-            <NavLink
-              to="/login"
-              className="btn bg-primary hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
-            >
-              Login
-            </NavLink>
-          )}
-          {user && (
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full overflow-hidden bg-red-300">
-                <img src={user.photoURL} alt="" />
-              </div>
-              <p className="text-white text-lg">{user.displayName}</p>
-              <button
-                onClick={handleLogOut}
-                className="btn bg-primary hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
-              >
-                logout
-              </button>
-            </div>
-          )}
         </ul>
       </div>
+      {!user && (
+        <NavLink
+          to="/login"
+          className="btn bg-primary  hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
+        >
+          Login
+        </NavLink>
+      )}
+      {user && (
+        <div className="flex  items-center gap-3">
+          <div className="w-10 h-10 rounded-full overflow-hidden bg-red-300">
+            <img src={user.photoURL} alt="" />
+          </div>
+          <p className="text-white text-lg hidden md:block">
+            {user.displayName}
+          </p>
+          <button
+            onClick={handleLogOut}
+            className="btn bg-primary hover:bg-white hover:text-black text-white h-10 min-h-[40px]"
+          >
+            logout
+          </button>
+        </div>
+      )}
     </Container>
   );
 };

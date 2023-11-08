@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const RoomCards = ({ data }) => {
+const RoomCards = ({ data, buttonText }) => {
   return (
     <Link
       to={`/rooms/details/${data._id}`}
@@ -13,7 +13,7 @@ const RoomCards = ({ data }) => {
       </div>
       <img src={data.image} className="w-full h-[210px] object-cover" alt="" />
       <p className="bg-secondary font-primary flex h-[40px] text-white items-center justify-center">
-        Click to see details
+        {buttonText}
       </p>
     </Link>
   );
