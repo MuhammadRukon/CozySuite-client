@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import MainLayout from "../layouts/MainLayout";
 import Container from "../components/Container";
+import Head from "../components/Head";
 
 const ContactUs = () => {
   const formRef = useRef(null);
@@ -11,9 +12,10 @@ const ContactUs = () => {
   return (
     <MainLayout>
       <Container>
+        <Head title={"Contact"} />
         <div className="my-8 mt-24 sm:my-24 md:my-28 text-center px-5 lg:px-0 overflow-hidden">
           <h2 className="text-center font-primary text-5xl">Contact Us</h2>
-          <div className=" px-10 rounded-lg">
+          <div className=" rounded-lg">
             <form
               onSubmit={(e) => handleSubmit(e)}
               ref={formRef}
