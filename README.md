@@ -1,4 +1,4 @@
-client live link:
+client live link:https://cozysuite-15955.web.app/
 
 feature 1: user can login/logout/register using email password and social login.users are assigned token using jwt which is stored in cookies for authorization purpose.
 
