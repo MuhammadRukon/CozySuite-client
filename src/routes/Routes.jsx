@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 import PrivateRoute from "./PrivateRoute";
 import RoomDetails from "../pages/RoomDetails";
 import UpdateBooking from "../pages/UpdateBooking";
+import About from "../pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/about",
+    element: <About />,
   },
   {
     path: "/register",

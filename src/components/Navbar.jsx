@@ -61,7 +61,11 @@ const Navbar = () => {
       {user && (
         <div className="flex  items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden bg-red-300">
-            <img src={user.photoURL} alt="" />
+            <img
+              src={user.photoURL}
+              alt=""
+              className="w-full h-full object-cover"
+            />
           </div>
           <p className="text-white text-lg hidden md:block">
             {user.displayName}

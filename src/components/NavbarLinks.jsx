@@ -22,6 +22,12 @@ const NavbarLinks = () => {
       >
         My Bookings
       </NavLink>
+      <NavLink
+        to="/about"
+        className="btn hover:bg-white hover:text-black border-0 h-10 min-h-[40px]"
+      >
+        About
+      </NavLink>
     </>
   );
 };
