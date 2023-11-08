@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import RoomDetails from "../pages/RoomDetails";
 import UpdateBooking from "../pages/UpdateBooking";
 import About from "../pages/About";
+import ContactUs from "../pages/ContactUs";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
   {
     path: "/about",
     element: <About />,
+  },
+  {
+    path: "/contact",
+    element: <ContactUs />,
   },
   {
     path: "/register",

@@ -6,27 +6,33 @@ const NavbarLinks = () => {
     <>
       <NavLink
         to="/"
-        className="btn  hover:bg-white hover:text-black border-0 h-10 min-h-[40px]"
+        className="btn   hover:bg-white hover:text-black border-0 h-[38px] min-h-[38px]  px-3"
       >
         Home
       </NavLink>
       <NavLink
         to="/rooms"
-        className="btn  hover:bg-white hover:text-black border-0 h-10 min-h-[40px]"
+        className="btn  hover:bg-white hover:text-black border-0 h-[38px] min-h-[38px]  px-3"
       >
         Rooms
       </NavLink>
       <NavLink
         to="/mybookings"
-        className="btn hover:bg-white hover:text-black border-0 h-10 min-h-[40px]"
+        className="btn hover:bg-white hover:text-black border-0 h-[38px] min-h-[38px] whitespace-nowrap px-3"
       >
         My Bookings
       </NavLink>
       <NavLink
         to="/about"
-        className="btn hover:bg-white hover:text-black border-0 h-10 min-h-[40px]"
+        className="btn hover:bg-white hover:text-black border-0 h-[38px] min-h-[38px]  px-3"
       >
         About
+      </NavLink>
+      <NavLink
+        to="/contact"
+        className="btn hover:bg-white hover:text-black border-0 h-[38px] min-h-[38px]  px-3"
+      >
+        Contact
       </NavLink>
     </>
   );

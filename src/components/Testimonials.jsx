@@ -17,7 +17,7 @@ const Testimonials = () => {
     dots: true,
     infinite: true,
     arrows: true,
-    autoplay: true,
+    // autoplay: true,
     autoplaySpeed: 2000,
     speed: 500,
     slidesToShow: 1,
@@ -43,7 +43,7 @@ const Testimonials = () => {
   }, [loading]);
   return (
     <Container>
-      <div className="my-8 lg:my-20 w-[350px] sm:w-[92%] mx-auto">
+      <div className="my-8 lg:my-20 w-[350px] sm:w-[600px] md:w-[700px] lg:w-[800px] xl:w-[92%] mx-auto">
         <h2 className="text-center font-primary text-5xl">Testimonials</h2>
         <h2 className="text-center text-md mt-4 italic">
           Clients that already booked from us and reviewed.

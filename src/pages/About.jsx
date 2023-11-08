@@ -130,7 +130,7 @@ const About = () => {
               Thank You!
             </h2>
             <Lottie loop={true} animationData="" />
-            <p className="pt-6 w-5/6 tracking-wider text-sm mx-auto text-center">
+            <p className="pt-6 w-5/6 tracking-wider text-sm mx-auto text-center mb-10 sm:mb-0">
               We're here to make your stay exceptional, so you can focus on
               creating unforgettable memories during your trips. Explore,
               experience, and enjoy with Cozy Suite!
