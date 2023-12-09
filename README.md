@@ -30,9 +30,9 @@ MERN stack based Hotel Booking Website, redefining user experiences in accommoda
 
 **Room Listings:**
 
--Available rooms with images.
--Price filter functionality.
--User reviews and ratings.
+- Available rooms with images.
+- Price filter functionality.
+- User reviews and ratings.
 
 **Booking Details:**
 
