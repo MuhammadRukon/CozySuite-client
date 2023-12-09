@@ -66,6 +66,4 @@ MERN stack based Hotel Booking Website, redefining user experiences in accommoda
 **Tech-stack:**
 React js, express js, mongodb and firebase.
 
-**Live Link:**
-
-[CozySuite](https://cozysuite-15955.web.app/)
+**Live Link:** [CozySuite](https://cozysuite-15955.web.app/)
