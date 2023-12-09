@@ -1,11 +1,71 @@
-client live link:https://cozysuite-15955.web.app/
+### CozySuite
 
-feature 1: user can login/logout/register using email password and social login.users are assigned token using jwt which is stored in cookies for authorization purpose.
+MERN stack based Hotel Booking Website, redefining user experiences in accommodation reservations. Explore the innovative features below:
 
-feature 2: anyone can visit web page and see rooms and their details.
+**Homepage Experience:**
 
-feature 3: a user has to be logged in in order to place a booking and the room has to be available to be booked.
+- Engaging visuals and videos.
+- Interactive map with attractions.
+- Prominent special offers display.
+- Authentic user testimonials.
+- Newsletter subscription option.
+- Featured room showcase.
 
-feature 4:user can review after successful booking. can update the booking date. and delete booking if he tries cancel before 1 day of the booked date.
+**Authentication:**
 
-feature 5: all datas(room datas, booking data, review) are fetched and posted via the server from and to mongoDB.
+- Email/password and Google login.
+
+**Responsive Design:**
+
+- Ensures the website is accessible on various devices.
+
+**JWT Implementation:**
+
+- Secure login with JWT tokens.
+- Token storage and protection for private APIs.
+
+**Intuitive Navigation:**
+
+- Direct links to "Rooms" and "My Bookings."
+
+**Room Listings:**
+
+-Available rooms with images.
+-Price filter functionality.
+-User reviews and ratings.
+
+**Booking Details:**
+
+- Comprehensive room information.
+- Seamless booking process.
+- Summary before confirmation.
+
+**Cancellation and Updates:**
+
+- Cancellation within 1 day.
+- Update booking dates easily.
+
+**Review System:**
+
+- User reviews for booked rooms.
+- Inclusive review display.
+
+**Access Control:**
+
+- Secure actions for logged-in users.
+- Limited access for non-logged-in users.
+
+**404 Custom Page:**
+
+- Engaging 404 page with a return option.
+
+**User Feedback:**
+
+- Toast messages for effective communication.
+
+**Tech-stack:**
+React js, express js, mongodb and firebase.
+
+**Live Link:**
+
+[CozySuite](https://cozysuite-15955.web.app/)
